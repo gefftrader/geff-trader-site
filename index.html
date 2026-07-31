@@ -217,6 +217,37 @@
   .step h3{margin-bottom:8px}
   .step p{font-size:16px}
 
+  /* feita com a sua cara */
+  .confronto{display:grid;gap:18px;margin-top:44px}
+  @media(min-width:900px){.confronto{grid-template-columns:1fr 1fr;gap:24px}}
+  .lado{border-radius:22px;padding:28px;border:1px solid}
+  .lado.generico{background:var(--bordo-tint);border-color:var(--bordo-line)}
+  .lado.sua{background:#fff;border-color:var(--green);box-shadow:var(--shadow)}
+  .lado h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px;font-weight:600}
+  .lado.generico h3{color:var(--bordo)}
+  .lado.sua h3{color:var(--green-deep)}
+  .balao{padding:16px 18px;border-radius:16px;font-size:15.5px;line-height:1.55}
+  .lado.generico .balao{background:#fff;color:#6B3245;border-bottom-left-radius:5px}
+  .lado.sua .balao{background:var(--green);color:var(--ink);border-bottom-left-radius:5px;font-weight:400}
+  .lado .veredito{margin-top:16px;font-size:14px;font-weight:500}
+  .lado.generico .veredito{color:var(--bordo)}
+  .lado.sua .veredito{color:var(--green-deep)}
+
+  .detalhes{display:grid;gap:16px;margin-top:44px}
+  @media(min-width:760px){.detalhes{grid-template-columns:1fr 1fr;gap:18px}}
+  .detalhe{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .detalhe b{display:block;color:var(--ink);font-weight:600;font-size:16.5px;margin-bottom:5px}
+  .detalhe span{font-size:15.5px;line-height:1.5}
+
+  .suporte{
+    margin-top:40px;background:var(--ink);color:#fff;border-radius:22px;
+    padding:36px 34px;display:grid;gap:22px;align-items:center;
+  }
+  @media(min-width:840px){.suporte{grid-template-columns:1fr auto;gap:38px}}
+  .suporte h3{color:#fff;font-size:26px;margin-bottom:10px}
+  .suporte p{color:#A9B4D0;font-size:16.5px;max-width:58ch}
+  .suporte .btn{background:var(--green);color:var(--ink)}
+
   /* prova */
   .proof .grid{display:grid;gap:38px;align-items:start}
   @media(min-width:920px){.proof .grid{grid-template-columns:1.15fr .85fr;gap:60px}}
@@ -327,7 +358,7 @@
       <p class="lead rv" style="--d:.12s">A Aly responde suas clientes no WhatsApp, marca na agenda e lança no caixa. Sozinha, a qualquer hora, do jeito que você fala. Você volta a fazer o que só você faz.</p>
       <div class="cta-row rv" style="--d:.18s">
         <a class="btn" href="#contato" data-wa><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Fale conosco agora</a>
-        <a class="btn ghost" href="#planos" data-wa>Consulte seu teste gratuito</a>
+        <a class="btn ghost" data-wa="Oi Geff, vi o site. Queria saber como funciona o teste gratuito.">Consulte seu teste gratuito</a>
       </div>
       <p class="micro rv" style="--d:.24s">Resposta no mesmo dia. E quem responde sou eu.</p>
     </div>
@@ -388,7 +419,7 @@
   <div class="wrap">
     <p class="rv"><em>Seu negócio raramente trava por falta de cliente.</em> Trava quando você começa a estar em todas as etapas.</p>
     <div class="cta-row rv" style="--d:.1s">
-      <a class="btn dark" href="#contato" data-wa><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero sair de algumas etapas</a>
+      <a class="btn dark" href="#contato" data-wa="Oi Geff, vi o site. Hoje eu estou em todas as etapas do meu negócio e queria sair de algumas."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero sair dessas etapas</a>
     </div>
   </div>
 </section>
@@ -416,7 +447,7 @@
       </div>
     </div>
     <div class="cta-row rv" style="--d:.26s;margin-top:38px">
-      <a class="btn" href="#contato" data-wa><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Ver funcionando no meu caso</a>
+      <a class="btn" href="#contato" data-wa="Oi Geff, vi o site. Queria ver a Aly atendendo no meu WhatsApp."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero ver a Aly no meu WhatsApp</a>
     </div>
   </div>
 </section>
@@ -444,7 +475,7 @@
       </div>
     </div>
     <div class="cta-row rv" style="--d:.27s;margin-top:44px">
-      <a class="btn" href="#contato" data-wa><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero esse tempo de volta</a>
+      <a class="btn" href="#contato" data-wa="Oi Geff, vi o site. Quero meu tempo de volta. Como começa?"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero meu tempo de volta</a>
     </div>
   </div>
 </section>
@@ -470,6 +501,42 @@
   </div>
 </section>
 
+<section class="s-mint">
+  <div class="wrap">
+    <p class="eyebrow rv">Feita com a sua cara</p>
+    <h2 class="rv" style="--d:.05s"><span class="thin">Ela aprende a falar</span><br>como você fala.</h2>
+    <p class="lead rv" style="--d:.09s;margin-top:16px">A Aly não sai de uma caixa pronta. Eu escuto como você atende hoje, o que você diz e o que você nunca diria, e configuro ela nisso. Sua cliente conversa com o seu negócio, não com um robô de prateleira.</p>
+
+    <div class="confronto">
+      <div class="lado generico rv" style="--d:.13s">
+        <h3>Atendimento de prateleira</h3>
+        <div class="balao">Olá! Sou o assistente virtual. Digite 1 para agendar, 2 para valores, 3 para falar com um atendente.</div>
+        <p class="veredito">A cliente sabe na primeira linha que não é você.</p>
+      </div>
+      <div class="lado sua rv" style="--d:.18s">
+        <h3>A sua Aly</h3>
+        <div class="balao">Oi, Camila! Que bom te ver por aqui de novo. Tenho quinta às 14h, que costuma ser o seu horário. Fecho pra você?</div>
+        <p class="veredito">A cliente sente que foi atendida por quem a conhece.</p>
+      </div>
+    </div>
+
+    <div class="detalhes">
+      <div class="detalhe rv" style="--d:.13s"><b>Seus serviços e seus preços</b><span>Exatamente como estão na sua tabela, com as variações e combinações que só você sabe.</span></div>
+      <div class="detalhe rv" style="--d:.16s"><b>Seu jeito de falar</b><span>Se trata por você ou por senhora, se usa emoji ou não, se chama de cliente, de amor ou pelo nome.</span></div>
+      <div class="detalhe rv" style="--d:.19s"><b>O que ela nunca vai dizer</b><span>Desconto que você não dá, promessa que você não faz, horário que você não abre. Tudo combinado antes.</span></div>
+      <div class="detalhe rv" style="--d:.22s"><b>O que sempre chega em você</b><span>Cliente chateada, pedido fora do padrão, qualquer coisa que precise da sua decisão. Ela passa e avisa.</span></div>
+    </div>
+
+    <div class="suporte rv" style="--d:.24s">
+      <div>
+        <h3>E o suporte sou eu.</h3>
+        <p>Você não abre chamado, não pega número de protocolo, não explica seu negócio pra um atendente diferente cada vez. Mudou preço, entrou serviço novo, contratou alguém: me chama e eu ajusto. É uma empresa pequena cuidando de outra, e eu faço questão que continue assim.</p>
+      </div>
+      <a class="btn" href="#contato" data-wa="Oi Geff, vi o site. Quero entender como a Aly seria configurada com a cara do meu negócio."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero a Aly com a minha cara</a>
+    </div>
+  </div>
+</section>
+
 <section class="proof">
   <div class="wrap grid">
     <div>
@@ -481,7 +548,7 @@
       <p class="rv" style="--d:.18s">E enquanto ela estava presa ali, o negócio não crescia. Não dá pra pensar em contratar, abrir mais horário ou trazer serviço novo quando as suas horas já acabaram respondendo WhatsApp.</p>
       <p class="rv" style="--d:.22s"><b>Hoje a Aly atende, marca e registra.</b> Ela atende a cliente sem parar no meio. O mês fecha sem planilha. E o jantar voltou a ser jantar.</p>
       <div class="cta-row rv" style="--d:.26s">
-        <a class="btn" href="#contato" data-wa><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero isso no meu negócio</a>
+        <a class="btn" href="#contato" data-wa="Oi Geff, vi o site. Li a parte do studio da sua esposa e quero o mesmo no meu negócio."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero o mesmo no meu negócio</a>
       </div>
     </div>
     <div class="status rv" style="--d:.16s">
@@ -524,7 +591,7 @@
           <li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Lembrete pro cliente antes do horário</li>
           <li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Um profissional</li>
         </ul>
-        <a class="btn ghost" href="#contato" data-wa>Consultar</a>
+        <a class="btn ghost" href="#contato" data-wa="Oi Geff, vi o site. Queria saber sobre o plano Essencial.">Quero o Essencial</a>
       </div>
 
       <div class="plano destaque rv" style="--d:.16s">
@@ -539,7 +606,7 @@
           <li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Aviso de cliente que sumiu</li>
           <li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Até três profissionais</li>
         </ul>
-        <a class="btn" href="#contato" data-wa>Começar pelo teste gratuito</a>
+        <a class="btn" href="#contato" data-wa="Oi Geff, vi o site. Quero começar o teste gratuito do plano Completo.">Testar de graça no meu WhatsApp</a>
       </div>
 
       <div class="plano rv" style="--d:.22s">
@@ -552,7 +619,7 @@
           <li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Fluxos e relatórios feitos pro seu caso</li>
           <li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Integração com o que você já usa</li>
         </ul>
-        <a class="btn ghost" href="#contato" data-wa>Falar comigo</a>
+        <a class="btn ghost" href="#contato" data-wa="Oi Geff, vi o site. Meu caso é mais específico, queria falar sobre o Sob medida.">Montar o meu</a>
       </div>
     </div>
     <p class="micro rv" style="--d:.26s;text-align:center">Não sabe qual serve? Me conta como funciona seu atendimento hoje que eu te digo, sem compromisso.</p>
@@ -618,8 +685,8 @@
     <h2 class="rv" style="--d:.05s">Se você chegou até aqui, se reconheceu em alguma parte.</h2>
     <p class="rv" style="--d:.09s">Me manda uma mensagem contando como funciona seu atendimento hoje. Eu te digo se o sistema resolve o seu caso ou não. Se não resolver, eu falo também.</p>
     <div class="cta-row rv" style="--d:.13s">
-      <a class="btn dark" href="#" data-wa><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Fale conosco agora</a>
-      <a class="btn ghost" href="#" data-wa>Consulte seu teste gratuito</a>
+      <a class="btn dark" href="#" data-wa="Oi Geff, vi o site. Vou te contar como funciona meu atendimento hoje."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Me conta se resolve o meu caso</a>
+      <a class="btn ghost" href="#" data-wa="Oi Geff, vi o site. Queria saber como funciona o teste gratuito.">Consulte seu teste gratuito</a>
     </div>
   </div>
 </section>
@@ -661,9 +728,12 @@ const CONFIG = {
 };
 
 /* ── contatos ── */
-const linkWa = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.mensagem);
+// Cada botao pode levar sua propria mensagem em data-wa. Assim, quando
+// alguem te chamar, a primeira frase ja diz qual parte do site converteu.
 document.querySelectorAll("[data-wa]").forEach(function (a) {
-  a.href = linkWa; a.target = "_blank"; a.rel = "noopener";
+  const texto = a.getAttribute("data-wa") || CONFIG.mensagem;
+  a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(texto);
+  a.target = "_blank"; a.rel = "noopener";
 });
 document.querySelectorAll("[data-ig]").forEach(function (a) {
   a.href = "https://instagram.com/" + CONFIG.instagram; a.target = "_blank"; a.rel = "noopener";
