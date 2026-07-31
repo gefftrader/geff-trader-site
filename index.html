@@ -34,7 +34,7 @@
     --bordo:#8C1D3F;      --bordo-bg:#FCEEF2;   --bordo-line:#F2D6DE;
     --ambar:#9A5300;      --ambar-bg:#FEF3E4;   --ambar-line:#F5E0C2;
     --roxo:#553BA6;       --roxo-bg:#EFECFB;    --roxo-line:#DDD6F5;
-    --azul:#1B4FA8;       --azul-bg:#E9F0FC;    --azul-line:#CFDDF5;
+    --azul:#4E7BB8;       --azul-bg:#EFF5FC;    --azul-line:#DCE8F7;
 
     --shadow:0 2px 4px rgba(7,11,43,.04), 0 14px 34px rgba(7,11,43,.07);
     --shadow-lg:0 4px 8px rgba(7,11,43,.05), 0 26px 60px rgba(7,11,43,.13);
@@ -150,10 +150,60 @@
   .msg{max-width:88%;padding:11px 15px;border-radius:16px;font-size:14.5px;line-height:1.5}
   .js .msg{opacity:0;transform:translateY(10px) scale(.98);animation:pop .42s cubic-bezier(.2,.8,.3,1) forwards}
   .msg.deles{background:#F1F3F7;color:var(--ink);align-self:flex-start;border-bottom-left-radius:5px}
-  .msg.dela{background:var(--ink);color:#fff;align-self:flex-end;border-bottom-right-radius:5px;font-weight:400}
+  .msg.dela{background:#D9FDD3;color:#0B1F16;align-self:flex-end;border-bottom-right-radius:5px;font-weight:400}
+  .msg.dela time{opacity:.5}
   .msg time{display:block;font-size:11px;opacity:.55;margin-top:3px;font-weight:400}
   @keyframes pop{to{opacity:1;transform:none}}
   @media(prefers-reduced-motion:reduce){.msg{opacity:1;transform:none}}
+
+  /* painel: recriacao do app com numeros de exemplo */
+  .painel-grid{display:grid;gap:48px;align-items:center}
+  @media(min-width:980px){.painel-grid{grid-template-columns:.92fr 1.08fr;gap:56px}}
+  .fone-app{
+    width:100%;max-width:362px;margin:0 auto;background:#fff;
+    border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow-lg);
+    overflow:hidden;
+  }
+  .app-topo{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:15px 18px;border-bottom:1px solid var(--line);background:var(--paper);
+  }
+  .app-topo b{font-size:16px;color:var(--ink);font-weight:600}
+  .app-topo span{font-size:11px;color:var(--slate-soft);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+  .app-corpo{padding:15px;display:flex;flex-direction:column;gap:11px;background:var(--cloud)}
+  .ac{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px 15px}
+  .ac-rot{font-size:11.5px;color:var(--slate-soft);font-weight:500;margin-bottom:3px}
+  .ac-num{font-size:25px;font-weight:700;color:var(--ink);letter-spacing:-.03em;line-height:1.1;font-variant-numeric:tabular-nums}
+  .ac-num.verde{color:var(--green-deep)}
+  .app-status{display:flex;align-items:center;gap:9px;background:var(--mint);border:1px solid #BFEFD2;border-radius:15px;padding:12px 14px}
+  .app-status .pulso{width:9px;height:9px;border-radius:50%;background:var(--green);flex:none;box-shadow:0 0 0 4px rgba(31,219,98,.22)}
+  .app-status b{display:block;font-size:13.5px;color:var(--ink);font-weight:600}
+  .app-status i{font-style:normal;font-size:12px;color:var(--green-deep)}
+  .app-2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  .app-3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+  .app-3 .ac-num{font-size:21px}
+  .rosca{display:flex;align-items:center;gap:16px}
+  .rosca-fig{
+    width:92px;height:92px;border-radius:50%;flex:none;
+    background:conic-gradient(var(--green-deep) 0 44%, var(--ambar) 44% 78%, var(--roxo) 78% 100%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .rosca-fig::after{content:"";width:60px;height:60px;border-radius:50%;background:#fff}
+  .rosca-lista{flex:1;display:flex;flex-direction:column;gap:7px}
+  .rosca-lista div{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--slate)}
+  .rosca-lista b{margin-left:auto;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+  .bolinha{width:8px;height:8px;border-radius:50%;flex:none}
+  .app-ag{display:flex;flex-direction:column;gap:0}
+  .app-ag .lin{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .app-ag .lin:last-child{border-bottom:0;padding-bottom:0}
+  .app-ag .hr{color:var(--ink);font-weight:600;flex:none;font-variant-numeric:tabular-nums}
+  .app-ag .nm{color:var(--slate)}
+  .app-ag .sv{margin-left:auto;color:var(--slate-soft);font-size:11.5px}
+  .legenda-ex{margin-top:14px;text-align:center;font-size:12.5px;color:var(--slate-soft)}
+  .lista-check{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:26px}
+  .lista-check li{display:flex;gap:12px;font-size:16.5px;line-height:1.5}
+  .lista-check svg{width:20px;height:20px;flex:none;margin-top:3px;stroke:var(--green-deep)}
+  .lista-check b{color:var(--ink);font-weight:600}
 
   /* dores, cada uma com a sua cor */
   .dores{display:grid;gap:18px;margin-top:44px}
@@ -215,7 +265,7 @@
   .lado.sua h3{color:var(--green-deep)}
   .balao{padding:15px 17px;border-radius:15px;font-size:15px;line-height:1.55;border-bottom-left-radius:5px}
   .lado.generico .balao{background:#fff;color:#6B3245}
-  .lado.sua .balao{background:var(--ink);color:#fff;font-weight:400}
+  .lado.sua .balao{background:#D9FDD3;color:#0B1F16;font-weight:400;border-bottom-left-radius:15px;border-bottom-right-radius:5px}
   .veredito{margin-top:14px;font-size:14px;font-weight:500}
   .lado.generico .veredito{color:var(--bordo)}
   .lado.sua .veredito{color:var(--green-deep)}
@@ -332,8 +382,8 @@
 
     <div class="rv palco" style="--d:.15s">
       <div class="tags-linha">
-        <span class="tag t1"><span class="pt"></span><span><b>23:47</b><i>Você dormindo</i></span></span>
-        <span class="tag t2"><span class="pt"></span><span><b>Respondido em 4s</b><i>Sem você abrir o celular</i></span></span>
+        <span class="tag t1"><span class="pt"></span><span><b>23:47</b><i>você dormindo</i></span></span>
+        <span class="tag t2"><span class="pt"></span><span><b>Respondido imediatamente</b><i>sem você abrir o celular</i></span></span>
       </div>
 
       <div class="fone">
@@ -351,8 +401,8 @@
       </div>
 
       <div class="tags-linha">
-        <span class="tag t3"><span class="pt"></span><span><b>Agenda atualizada</b><i>Sem risco de choque</i></span></span>
-        <span class="tag t4"><span class="pt"></span><span><b>Lançado no caixa</b><i>Sem planilha</i></span></span>
+        <span class="tag t3"><span class="pt"></span><span><b>Ajustada pro seu tom</b><i>ela fala como você fala</i></span></span>
+        <span class="tag t4"><span class="pt"></span><span><b>Tudo agendado 🙂</b><i>e já lançado no caixa</i></span></span>
       </div>
     </div>
   </div>
@@ -443,6 +493,70 @@
     </div>
     <div class="cta-row rv" style="--d:.24s;margin-top:34px">
       <a class="btn" href="#contato" data-wa="Oi Geff, vi o site. Queria ver a Aly atendendo no meu WhatsApp."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero ver a Aly no meu WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="s-cloud">
+  <div class="wrap painel-grid">
+    <div class="rv">
+      <div class="fone-app">
+        <div class="app-topo"><b>Início</b><span>Hoje</span></div>
+        <div class="app-corpo">
+          <div class="app-status">
+            <span class="pulso"></span>
+            <span><b>Secretária atendendo</b><i>Respondendo no WhatsApp · 9 conversas</i></span>
+          </div>
+
+          <div class="app-2">
+            <div class="ac"><div class="ac-rot">Faturamento do mês</div><div class="ac-num verde">R$ 9.480</div></div>
+            <div class="ac"><div class="ac-rot">A receber</div><div class="ac-num">R$ 320</div></div>
+          </div>
+
+          <div class="app-3">
+            <div class="ac"><div class="ac-rot">Procedimentos</div><div class="ac-num">64</div></div>
+            <div class="ac"><div class="ac-rot">Clientes</div><div class="ac-num">138</div></div>
+            <div class="ac"><div class="ac-rot">Agendados</div><div class="ac-num">21</div></div>
+          </div>
+
+          <div class="ac">
+            <div class="ac-rot" style="margin-bottom:12px">Entradas por serviço</div>
+            <div class="rosca">
+              <div class="rosca-fig"></div>
+              <div class="rosca-lista">
+                <div><span class="bolinha" style="background:var(--green-deep)"></span>Design <b>R$ 4.180</b></div>
+                <div><span class="bolinha" style="background:var(--ambar)"></span>Coloração <b>R$ 3.240</b></div>
+                <div><span class="bolinha" style="background:var(--roxo)"></span>Outros <b>R$ 2.060</b></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ac">
+            <div class="ac-rot" style="margin-bottom:6px">Hoje na agenda</div>
+            <div class="app-ag">
+              <div class="lin"><span class="hr">09:00</span><span class="nm">Ana Paula</span><span class="sv">Design</span></div>
+              <div class="lin"><span class="hr">10:30</span><span class="nm">Marcos</span><span class="sv">Corte e barba</span></div>
+              <div class="lin"><span class="hr">13:00</span><span class="nm">Juliana</span><span class="sv">Coloração</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="legenda-ex">Exemplo ilustrativo do painel. Os números são fictícios.</p>
+    </div>
+
+    <div>
+      <p class="eyebrow rv">O painel</p>
+      <h2 class="rv" style="--d:.05s"><span class="thin">Seu negócio inteiro</span><br>numa tela só.</h2>
+      <p class="lead rv" style="--d:.09s;margin-top:16px">Enquanto a Aly atende, tudo vira número. Você abre o app quando quiser e vê como o mês está indo, sem abrir planilha e sem somar nada de cabeça.</p>
+      <ul class="lista-check">
+        <li class="rv" style="--d:.13s"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>Quanto entrou e de qual serviço.</b> Dá pra ver qual procedimento sustenta o mês e qual só ocupa agenda.</span></li>
+        <li class="rv" style="--d:.16s"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>Quem ainda não pagou.</b> O que está em atraso aparece sozinho, sem você precisar lembrar.</span></li>
+        <li class="rv" style="--d:.19s"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>A agenda do dia na primeira tela.</b> Você abre o celular e já sabe como vai ser o dia.</span></li>
+        <li class="rv" style="--d:.22s"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>Feito pro seu negócio.</b> As cores, o nome e os serviços são os seus. Esse é só um exemplo.</span></li>
+      </ul>
+      <div class="cta-row rv" style="--d:.26s;margin-top:30px">
+        <a class="btn" href="#contato" data-wa="Oi Geff, vi o site. Queria ver o painel funcionando com os números do meu negócio."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero ver o meu painel</a>
+      </div>
     </div>
   </div>
 </section>
