@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Geff Trader IA | Atendimento, agenda e financeiro no automático</title>
-<meta name="description" content="A Aly atende suas clientes no WhatsApp, marca na agenda e lança no caixa. Você volta a fazer o que só você faz.">
+<meta name="description" content="A Aly entrega mais que respostas no WhatsApp: te entrega tempo com a família e energia pra se dedicar às áreas que precisam de você. Atendimento, agenda e financeiro no automático.">
 <meta property="og:title" content="Seu negócio não pode depender de você responder mensagem.">
-<meta property="og:description" content="Atendimento, agenda e financeiro no automático. A Aly responde, marca e registra enquanto você atende.">
+<meta property="og:description" content="A Aly entrega mais que respostas no WhatsApp: te entrega tempo com a família e energia pra se dedicar às áreas que precisam de você.">
 <meta property="og:image" content="assets/og.png">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/simbolo.png">
@@ -194,6 +194,16 @@
   .card h3{margin-bottom:11px}
   .card p{font-size:16px}
 
+  /* o que voce ganha de volta */
+  .declaracao{font-size:clamp(29px,4.2vw,52px);line-height:1.09;max-width:17ch}
+  .ganhos .lead{font-size:clamp(18px,2vw,23px);margin-top:22px;max-width:46ch;color:var(--ink);font-weight:400}
+  .pilares{display:grid;gap:30px;margin-top:56px}
+  @media(min-width:880px){.pilares{grid-template-columns:repeat(3,1fr);gap:40px}}
+  .pilar{padding-top:24px;border-top:3px solid var(--green)}
+  .pilar .ico{background:#fff;box-shadow:var(--shadow)}
+  .pilar h3{margin-bottom:9px}
+  .pilar p{font-size:16px}
+
   /* passos */
   .steps{counter-reset:s;margin-top:48px;display:grid;gap:26px}
   @media(min-width:900px){.steps{grid-template-columns:repeat(3,1fr);gap:34px}}
@@ -292,6 +302,9 @@
   <g id="i-users" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></g>
   <g id="i-chart" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3.5 3.5L21 6"/></g>
   <g id="i-ok" fill="none" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></g>
+  <g id="i-familia" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1l1.7 1.7L12 21.5l7.1-7.1 1.7-1.7a5 5 0 0 0 0-7.1z"/></g>
+  <g id="i-energia" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.1 13.2a1 1 0 0 0 .8 1.6H11l-1 8.2 8.9-11.2a1 1 0 0 0-.8-1.6H12l1-8.2z"/></g>
+  <g id="i-crescer" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4v-7H4zM10 20h4V8h-4zM16 20h4V3h-4z"/></g>
   <g id="i-x" fill="none" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></g>
   <g id="i-wa" fill="currentColor"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.27-1.38a9.9 9.9 0 0 0 4.77 1.21h.01a9.9 9.9 0 0 0 9.94-9.9A9.9 9.9 0 0 0 12.04 2zm5.8 14.06c-.24.68-1.42 1.3-1.95 1.35-.5.05-.98.23-3.3-.69-2.78-1.1-4.55-3.94-4.69-4.12-.14-.19-1.12-1.49-1.12-2.84 0-1.35.7-2.01.96-2.29.24-.27.53-.34.7-.34l.5.01c.16 0 .38-.6.58.45.24.53.8 1.88.87 2.02.7.13.11.29.02.47-.1.18-.14.29-.28.45l-.42.49c-.14.14-.28.3-.12.58.16.29.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.28.14.44.12.6-.7.16-.2.7-.81.88-1.09.19-.27.37-.23.63-.14.26.1 1.62.77 1.9.91.28.14.46.21.53.33.07.11.07.65-.17 1.33z"/></g>
 </defs></svg>
@@ -404,6 +417,34 @@
     </div>
     <div class="cta-row rv" style="--d:.26s;margin-top:38px">
       <a class="btn" href="#contato" data-wa><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Ver funcionando no meu caso</a>
+    </div>
+  </div>
+</section>
+
+<section class="s-mint ganhos">
+  <div class="wrap">
+    <p class="eyebrow rv">O que você ganha de volta</p>
+    <h2 class="declaracao rv" style="--d:.05s"><span class="thin">A Aly entrega mais que</span><br>respostas no WhatsApp.</h2>
+    <p class="lead rv" style="--d:.09s">Ela te entrega tempo com a família e energia pra se dedicar às áreas que precisam de você.</p>
+    <div class="pilares">
+      <div class="pilar rv" style="--d:.13s">
+        <div class="ico"><svg viewBox="0 0 24 24"><use href="#i-familia"/></svg></div>
+        <h3>Tempo com a família</h3>
+        <p>O jantar sem o celular na mão. O domingo que volta a ser domingo. As horas que hoje somem respondendo a mesma pergunta voltam pra quem importa.</p>
+      </div>
+      <div class="pilar rv" style="--d:.18s">
+        <div class="ico"><svg viewBox="0 0 24 24"><use href="#i-energia"/></svg></div>
+        <h3>Energia pro que precisa de você</h3>
+        <p>Chegar no fim do dia com cabeça pra decidir, não só pra apagar incêndio. Atender bem quem está na sua frente sem o celular puxando sua atenção.</p>
+      </div>
+      <div class="pilar rv" style="--d:.23s">
+        <div class="ico"><svg viewBox="0 0 24 24"><use href="#i-crescer"/></svg></div>
+        <h3>Espaço pra crescer</h3>
+        <p>Contratar, abrir mais horário, criar serviço novo. Nada disso cabe numa agenda que já acabou respondendo WhatsApp.</p>
+      </div>
+    </div>
+    <div class="cta-row rv" style="--d:.27s;margin-top:44px">
+      <a class="btn" href="#contato" data-wa><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero esse tempo de volta</a>
     </div>
   </div>
 </section>
