@@ -117,9 +117,13 @@
     padding:7px 14px;border-radius:99px;
   }
 
-  /* selo girando. Fundo transparente, gira devagar para ser presenca e nao distracao. */
+  /* selo em duas camadas: o G fica parado e so o anel de texto gira.
+     As camadas saem de scripts/separar-selo.py, que separa o PNG por cor. */
   @keyframes gira{to{transform:rotate(360deg)}}
-  .selo{width:118px;height:118px;animation:gira 26s linear infinite;filter:drop-shadow(0 8px 22px rgba(7,11,43,.18))}
+  .selo{position:relative;display:block;width:118px;height:118px;filter:drop-shadow(0 8px 22px rgba(7,11,43,.16))}
+  .selo img{position:absolute;inset:0;width:100%;height:100%}
+  .selo-anel{animation:gira 26s linear infinite}
+  .selo-miolo{transform:scale(.995)}
   /* encosta no canto de cima do card, do lado oposto ao nome da Aly */
   .selo-flutua{position:absolute;top:-40px;right:-28px;z-index:3;pointer-events:none}
   @media(max-width:560px){
@@ -267,7 +271,7 @@
   details p{margin-top:12px;font-size:16px;max-width:66ch}
 
   .final{background:var(--mint);text-align:center;border-top:1px solid var(--mint-line)}
-  .final img:not(.selo){height:34px;margin:0 auto 28px}
+  /* o unico elemento de marca aqui e o selo, que tem regra propria acima */
   .final h2{max-width:19ch;margin:0 auto 18px}
   .final p{font-size:18px;max-width:52ch;margin:0 auto 30px}
   .final .cta-row{justify-content:center}
@@ -316,7 +320,10 @@
     </div>
 
     <div class="rv fone-area" style="--d:.16s">
-      <img class="selo selo-flutua" src="assets/selo.png" alt="" aria-hidden="true">
+      <span class="selo selo-flutua" aria-hidden="true">
+        <img class="selo-anel" src="assets/selo-anel.png" alt="">
+        <img class="selo-miolo" src="assets/selo-miolo.png" alt="">
+      </span>
       <div class="fone">
         <div class="fone-topo">
           <div class="av">A</div>
@@ -563,7 +570,10 @@
 
 <section class="final" id="contato">
   <div class="wrap">
-    <img class="selo rv" src="assets/selo.png" alt="Geff Trader" style="margin:0 auto 30px">
+    <span class="selo rv" style="margin:0 auto 30px">
+      <img class="selo-anel" src="assets/selo-anel.png" alt="">
+      <img class="selo-miolo" src="assets/selo-miolo.png" alt="Geff Trader">
+    </span>
     <h2 class="rv" style="--d:.05s">Se você chegou até aqui, se reconheceu em alguma parte.</h2>
     <p class="rv" style="--d:.09s">Me manda uma mensagem contando como funciona seu atendimento hoje. Eu te digo se o sistema resolve o seu caso ou não. Se não resolver, eu falo também.</p>
     <div class="cta-row rv" style="--d:.13s">
