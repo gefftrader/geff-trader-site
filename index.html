@@ -109,10 +109,30 @@
   .fin-total strong{font-size:23px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
   .fin-nota{margin-top:14px;font-size:12.5px;color:var(--slate-soft)}
   .fin-print{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
-  .fin-fone{width:100%;max-width:300px;margin:0 auto;justify-self:center}
-  .fin-demo .fin-l{display:flex;justify-content:space-between;padding:5px 0;font-size:10px;color:#4A577F}
-  .fin-demo .fin-l b{color:var(--ink);font-weight:600}
-  .fin-demo .fin-l.total b{color:var(--green-deep);font-size:12px}
+  /* halo alegre atrás do aparelho: o financeiro é a parte boa da história */
+  .fin-fone{width:100%;max-width:300px;margin:0 auto;justify-self:center;position:relative}
+  .fin-fone::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:150%;aspect-ratio:1;border-radius:50%;z-index:0;
+    background:radial-gradient(circle at 32% 30%,rgba(31,219,98,.34),rgba(31,219,98,0) 58%),
+               radial-gradient(circle at 72% 68%,rgba(255,214,102,.34),rgba(255,214,102,0) 55%),
+               radial-gradient(circle at 60% 20%,rgba(120,220,255,.24),rgba(120,220,255,0) 52%);
+    filter:blur(6px)}
+  .fin-fone .iph,.fin-fone .rot-ap{position:relative;z-index:1}
+  /* tela do Financeiro no aparelho, igualzinha ao app */
+  .fin-demo .fd-periodo{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:2px}
+  .fin-demo .fd-mes{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:4px 14px;font-size:10.5px;font-weight:600}
+  .fin-demo .fd-seta{width:21px;height:21px;border-radius:50%;border:1px solid var(--bd);background:var(--card);
+    display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--tx2)}
+  .fin-demo .fd-donut{display:flex;justify-content:center;padding:7px 0 9px}
+  .fin-demo .fd-donut span{width:82px;height:82px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .fin-demo .fd-donut i{width:60px;height:60px;border-radius:50%;background:var(--card);display:flex;
+    flex-direction:column;align-items:center;justify-content:center;font-style:normal;gap:1px}
+  .fin-demo .fd-donut b{font-size:11.5px;font-weight:700;letter-spacing:-.02em}
+  .fin-demo .fd-donut em{font-style:normal;font-size:6.5px;letter-spacing:.14em;color:var(--tx2);text-transform:uppercase}
+  .fin-demo .fin-l{display:flex;justify-content:space-between;align-items:center;padding:3.5px 0;font-size:9.5px;color:var(--tx2)}
+  .fin-demo .fin-l u{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px}
+  .fin-demo .fin-l b{color:var(--tx);font-weight:600}
+  .fin-demo .fd-saldo{margin-top:7px;font-size:10px;font-weight:600;color:var(--tx)}
   @media(max-width:880px){.grid-fin{grid-template-columns:minmax(0,1fr)}.traco{width:280px;right:-100px;opacity:.12}}
 
   /* revelacao no scroll. Só esconde com o JS vivo, para a pagina nunca
@@ -844,26 +864,22 @@
                  onerror="this.remove();document.getElementById('fin-exemplo').hidden=false">
             <div class="tela mob" id="fin-exemplo" hidden>
               <div class="app appm fin-demo">
-                <div class="appm-topo"><span><b>Financeiro</b></span><em>Agosto</em></div>
+                <div class="appm-topo"><span><b>vi</b> Financeiro</span><em>☀︎ ▤</em></div>
                 <div class="appm-cnt">
-                  <div class="bl"><div class="tt">Entradas do mês</div>
-                    <div class="fin-l"><span>Design</span><b>R$ 805</b></div>
-                    <div class="fin-l"><span>Epilação</span><b>R$ 826</b></div>
-                    <div class="fin-l"><span>Perfuração</span><b>R$ 751</b></div>
+                  <div class="fd-periodo"><span class="fd-seta">‹</span><span class="fd-mes">Julho 2026 ▾</span><span class="fd-seta">›</span></div>
+                  <div class="bl">
+                    <div class="tt">Entradas de julho <span>categorias</span></div>
+                    <div class="fd-donut"><span style="background:conic-gradient(#B26B4A 0% 34%,#C9A227 34% 67%,#5C7A5A 67% 100%)"><i><b>R$ 5.840</b><em>entradas</em></i></span></div>
+                    <div class="fin-l"><span><u style="background:#B26B4A"></u>Design</span><b>R$ 1.980</b></div>
+                    <div class="fin-l"><span><u style="background:#C9A227"></u>Epilação</span><b>R$ 2.140</b></div>
+                    <div class="fin-l"><span><u style="background:#5C7A5A"></u>Perfuração</span><b>R$ 1.720</b></div>
+                    <div class="fd-saldo">Saldo de julho: R$ 4.580</div>
                   </div>
-                  <div class="num">
-                    <div class="cx"><div class="rot">Entrou</div><div class="big ok">R$ 2.382</div></div>
-                    <div class="cx"><div class="rot">Saiu</div><div class="big">R$ 15</div></div>
-                  </div>
-                  <div class="bl"><div class="tt">Resultado do mês</div>
-                    <div class="fin-l total"><span>Sobrou</span><b>R$ 2.367</b></div>
-                  </div>
-                  <div class="bl"><div class="tt">A receber <span>extrato</span></div>
-                    <div class="fin-l"><span>Andréa · design</span><b>R$ 30</b></div>
-                    <div class="fin-l"><span>Zily · virilha</span><b>R$ 50</b></div>
-                  </div>
-                  <div class="bl"><div class="tt">Saídas do mês</div>
-                    <div class="fin-l"><span>Material</span><b>R$ 15</b></div>
+                  <div class="bl">
+                    <div class="tt">Resultado de julho</div>
+                    <div class="fd-donut"><span style="background:conic-gradient(#5C7A5A 0% 82%,#A94438 82% 100%)"><i><b>R$ 4.580</b><em>líquido</em></i></span></div>
+                    <div class="fin-l"><span><u style="background:#5C7A5A"></u>Entradas</span><b>R$ 5.840</b></div>
+                    <div class="fin-l"><span><u style="background:#A94438"></u>Saídas</span><b>R$ 1.260</b></div>
                   </div>
                 </div>
                 <div class="appm-nav"><span>Início</span><span>Agenda</span><span>Clientes</span><span class="on">Financeiro</span><span>Atendimento</span></div>
