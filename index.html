@@ -94,7 +94,7 @@
   .s-mint .wrap,.s-fin .wrap{position:relative}
   /* financeiro: a area quente do site */
   .s-fin{background:var(--creme);border-block:1px solid #E3EFE6;position:relative;overflow:hidden}
-  .grid-fin{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,5vw,74px);align-items:center}
+  .grid-fin{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:clamp(30px,5vw,64px);align-items:center}
   .tag-fin{display:inline-block;border:1.5px solid var(--faisca-suave);background:#fff;color:var(--green-deep);border-radius:999px;padding:6px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}
   .fin-lista{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:13px}
   .fin-lista li{display:flex;gap:11px;align-items:baseline;font-size:15.5px;color:var(--slate)}
@@ -108,8 +108,12 @@
   .fin-total{display:flex;justify-content:space-between;padding-top:15px;font-weight:700;color:var(--ink);font-size:17px}
   .fin-total strong{font-size:23px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
   .fin-nota{margin-top:14px;font-size:12.5px;color:var(--slate-soft)}
-  .fin-print{width:100%;height:auto;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow-lg)}
-  @media(max-width:880px){.grid-fin{grid-template-columns:1fr}.traco{width:280px;right:-100px;opacity:.12}}
+  .fin-print{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+  .fin-fone{width:100%;max-width:300px;margin:0 auto;justify-self:center}
+  .fin-demo .fin-l{display:flex;justify-content:space-between;padding:5px 0;font-size:10px;color:#4A577F}
+  .fin-demo .fin-l b{color:var(--ink);font-weight:600}
+  .fin-demo .fin-l.total b{color:var(--green-deep);font-size:12px}
+  @media(max-width:880px){.grid-fin{grid-template-columns:minmax(0,1fr)}.traco{width:280px;right:-100px;opacity:.12}}
 
   /* revelacao no scroll. Só esconde com o JS vivo, para a pagina nunca
      ficar em branco se o script falhar ou o robo de busca nao rodar JS. */
@@ -802,10 +806,10 @@
     </div>
 
     <div class="fatos rv" style="--d:.22s">
-      <div class="fato"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>É o mesmo sistema nas duas telas</b><span>As cores, o nome e os serviços são os de cada negócio.</span></span></div>
-      <div class="fato"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>Abre e entende</b><span>Faturamento, a receber e agenda na primeira tela. Sem treinamento.</span></span></div>
-      <div class="fato"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>No computador e no celular</b><span>A mesma informação nos dois, do jeito que couber no seu dia.</span></span></div>
-      <div class="fato"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>A secretária aparece ali</b><span>Quantas conversas esperam você e quantas ela já resolveu sozinha.</span></span></div>
+      <div class="fato"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>O mesmo sistema nas duas telas</b><span>As cores, o nome e os serviços personalizados com o SEU negócio.</span></span></div>
+      <div class="fato"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>Painel simples</b><span>As informações mais importantes do seu negócio, automáticas no seu app.</span></span></div>
+      <div class="fato"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>No computador e no celular</b><span>Acompanhe de onde quiser.</span></span></div>
+      <div class="fato"><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg><span><b>A secretária organiza tudo</b><span>Ela te mostra a fase em que cada atendimento está, em tempo real.</span></span></div>
     </div>
     <p class="legenda-ex">Exemplo ilustrativo. Nomes e números são fictícios.</p>
   </div>
@@ -828,14 +832,47 @@
         <li>No fim do mês, o total já tá pronto</li>
       </ul>
     </div>
-    <!-- Quando o Geff mandar o print real do financeiro do app, troque este
-         card por: <img class="fin-print" src="assets/print-financeiro.png" alt="Financeiro do app"> -->
-    <div class="fin-card rv" style="--d:.15s">
-      <b>Hoje no caixa</b>
-      <div class="fin-linha ent"><span>Entrou</span><strong>+ R$ 480</strong></div>
-      <div class="fin-linha sai"><span>Saiu</span><strong>− R$ 120</strong></div>
-      <div class="fin-total"><span>Sobrou</span><strong>R$ 360</strong></div>
-      <p class="fin-nota">Exemplo. No app são os seus números.</p>
+    <!-- O print real do Financeiro entra aqui: basta salvar a imagem em
+         assets/print-financeiro.png. Enquanto ela nao existe, o onerror
+         deixa o exemplo desenhado no lugar. -->
+    <div class="rv fin-fone" style="--d:.15s">
+      <div class="iph">
+        <div class="iph-corpo">
+          <div class="iph-tela">
+            <span class="iph-ilha"></span><span class="iph-barra"></span>
+            <img class="fin-print" src="assets/print-financeiro.png" alt="Financeiro do app"
+                 onerror="this.remove();document.getElementById('fin-exemplo').hidden=false">
+            <div class="tela mob" id="fin-exemplo" hidden>
+              <div class="app appm fin-demo">
+                <div class="appm-topo"><span><b>Financeiro</b></span><em>Agosto</em></div>
+                <div class="appm-cnt">
+                  <div class="bl"><div class="tt">Entradas do mês</div>
+                    <div class="fin-l"><span>Design</span><b>R$ 805</b></div>
+                    <div class="fin-l"><span>Epilação</span><b>R$ 826</b></div>
+                    <div class="fin-l"><span>Perfuração</span><b>R$ 751</b></div>
+                  </div>
+                  <div class="num">
+                    <div class="cx"><div class="rot">Entrou</div><div class="big ok">R$ 2.382</div></div>
+                    <div class="cx"><div class="rot">Saiu</div><div class="big">R$ 15</div></div>
+                  </div>
+                  <div class="bl"><div class="tt">Resultado do mês</div>
+                    <div class="fin-l total"><span>Sobrou</span><b>R$ 2.367</b></div>
+                  </div>
+                  <div class="bl"><div class="tt">A receber <span>extrato</span></div>
+                    <div class="fin-l"><span>Andréa · design</span><b>R$ 30</b></div>
+                    <div class="fin-l"><span>Zily · virilha</span><b>R$ 50</b></div>
+                  </div>
+                  <div class="bl"><div class="tt">Saídas do mês</div>
+                    <div class="fin-l"><span>Material</span><b>R$ 15</b></div>
+                  </div>
+                </div>
+                <div class="appm-nav"><span>Início</span><span>Agenda</span><span>Clientes</span><span class="on">Financeiro</span><span>Atendimento</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="rot-ap"><b>Financeiro</b> · no celular</p>
     </div>
   </div>
 </section>
