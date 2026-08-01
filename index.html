@@ -162,20 +162,77 @@
     box-shadow:inset 0 0 0 1.5px #D9E2DB,0 2px 6px rgba(7,11,43,.06);white-space:nowrap;
     transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
   }
-  .btn svg{width:17px;height:17px;flex:none}
+  .btn svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none}
   .btn:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1.5px var(--ink),0 10px 20px rgba(7,11,43,.12)}
+  /* ── CTA: vidro menta ──────────────────────────────────────────────────
+     O verde deixa de ser tinta e vira liquido dentro de um vidro. Escolhido
+     pelo Geff entre quatro tratamentos.
+
+     Tres reparos em cima da proposta original, todos medidos:
+     (a) o backdrop-filter e no-op sobre fundo chapado (borrar cor uniforme
+         devolve a mesma cor), entao quem faz o vidro e o gradiente, nao o
+         blur — o blur fica so pra quando o botao cruza borda de secao;
+     (b) sem saturate(): ele deixava o botao MAIS saturado que a faixa em que
+         pousa, o oposto do pedido "menos forte";
+     (c) o aro original dava 1,89:1 contra o papel — o botao sumia do fundo.
+         Engrossado ate o objeto ter fronteira visivel.
+     Texto em #06522A: o --green-deep reprova em AA aqui (4,11:1). */
   .btn.verde{
-    position:relative;overflow:hidden;color:#06371C;
-    background:linear-gradient(160deg,rgba(255,255,255,.5),rgba(255,255,255,0) 42%),var(--green);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(6,55,28,.14),0 2px 10px rgba(31,219,98,.22);
+    --vidro-piso:.52;      /* piso branco: sobe = mais legivel, menos vidro */
+    --vidro-luz:0;         /* quanto o vidro pega luz no hover */
+    position:relative; isolation:isolate; overflow:hidden;
+    color:#06522A;
+    -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+    background-color:rgba(255,255,255,calc(var(--vidro-piso) + var(--vidro-luz)));
+    background-image:
+      linear-gradient(180deg,rgba(255,255,255,.60) 0%,rgba(255,255,255,.10) 46%,rgba(255,255,255,0) 100%),
+      linear-gradient(180deg,rgba(31,219,98,.20) 0%,rgba(10,127,57,.26) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.9),
+      inset 0 -1px 0 rgba(6,82,42,.16),
+      0 1px 2px rgba(7,11,43,.06),
+      0 8px 20px rgba(7,11,43,.08),
+      0 4px 14px rgba(10,127,57,.14);
+    transition:transform .22s cubic-bezier(.22,.8,.28,1), box-shadow .22s ease, background-color .22s ease;
   }
-  /* o brilho atravessa o vidro quando o mouse chega */
-  .btn.verde::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-    background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.5) 50%,transparent 62%);
-    transform:translateX(-115%);transition:transform .62s cubic-bezier(.22,.8,.28,1)}
-  .btn.verde:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 8px 22px rgba(31,219,98,.3)}
-  .btn.verde:hover::after{transform:translateX(115%)}
-  @media(prefers-reduced-motion:reduce){.btn.verde::after{display:none}}
+  /* o aro de 1px: branco no topo, verde-escuro na base — e o que da espessura */
+  .btn.verde::before{
+    content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;
+    padding:1.2px;pointer-events:none;
+    background:linear-gradient(180deg,
+      rgba(255,255,255,.95) 0%, rgba(140,205,170,.55) 40%,
+      rgba(10,127,57,.42) 66%, rgba(6,82,42,.58) 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+            mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+  }
+  /* o realce especular: a lasca de luz no topo do vidro */
+  .btn.verde::after{
+    content:"";position:absolute;z-index:2;pointer-events:none;
+    left:8%;right:8%;top:2px;height:clamp(7px,22%,12px);border-radius:999px;
+    background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.30) 52%,rgba(255,255,255,0));
+    transition:opacity .22s ease;
+  }
+  .btn.verde:hover{
+    --vidro-luz:.12; transform:translateY(-1.5px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.95),
+      inset 0 -1px 0 rgba(6,82,42,.18),
+      0 1px 2px rgba(7,11,43,.07),
+      0 14px 30px rgba(7,11,43,.11),
+      0 6px 20px rgba(10,127,57,.2);
+  }
+  .btn.verde:active{transform:translateY(0) scale(.988)}
+  .btn.verde:focus-visible{outline:2px solid #06522A;outline-offset:3px}
+  /* se a mascara nao aplicar, o aro viraria um retangulo por cima do texto */
+  @supports not ((-webkit-mask-composite:xor) or (mask-composite:exclude)){
+    .btn.verde::before{display:none}
+    .btn.verde{box-shadow:inset 0 0 0 1.2px rgba(10,127,57,.5),
+      inset 0 1px 0 rgba(255,255,255,.9), 0 8px 20px rgba(7,11,43,.08)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .btn.verde{transition:none} .btn.verde:hover,.btn.verde:active{transform:none}
+  }
   .btn.sm{padding:11px 20px;font-size:12px}
   .btn svg{width:18px;height:18px;flex:none}
 
@@ -191,7 +248,7 @@
   .zap .zap-wa{position:absolute;right:-2px;bottom:-2px;width:28px;height:28px;border-radius:50%;
     background:#25D366;display:flex;align-items:center;justify-content:center;
     box-shadow:0 2px 7px rgba(7,11,43,.28),0 0 0 2.5px var(--paper)}
-  .zap .zap-wa svg{width:16px;height:16px;stroke:#fff}
+  .zap .zap-wa svg{width:15px;height:15px;stroke:#fff;fill:none}
   .zap:hover{transform:scale(1.07);filter:drop-shadow(0 10px 24px rgba(7,11,43,.26))}
   @media(max-width:760px){.zap{right:15px;bottom:15px;width:62px;height:62px}.zap .zap-wa{width:25px;height:25px}.zap .zap-wa svg{width:14px;height:14px}}
 
@@ -606,7 +663,7 @@
   <g id="i-crescer" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4v-7H4zM10 20h4V8h-4zM16 20h4V3h-4z"/></g>
   <g id="i-x" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></g>
   <g id="i-ok" fill="none" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></g>
-  <g id="i-wa" fill="currentColor"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.27-1.38a9.9 9.9 0 0 0 4.77 1.21h.01a9.9 9.9 0 0 0 9.94-9.9A9.9 9.9 0 0 0 12.04 2zm5.8 14.06c-.24.68-1.42 1.3-1.95 1.35-.5.05-.98.23-3.3-.69-2.78-1.1-4.55-3.94-4.69-4.12-.14-.19-1.12-1.49-1.12-2.84 0-1.35.7-2.01.96-2.29.24-.27.53-.34.7-.34l.5.01c.16 0 .38-.6.58.45.24.53.8 1.88.87 2.02.7.13.11.29.02.47-.1.18-.14.29-.28.45l-.42.49c-.14.14-.28.3-.12.58.16.29.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.28.14.44.12.6-.7.16-.2.7-.81.88-1.09.19-.27.37-.23.63-.14.26.1 1.62.77 1.9.91.28.14.46.21.53.33.07.11.07.65-.17 1.33z"/></g>
+  <g id="i-wa" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8a5 5 0 0 1 5 5v2.5a5 5 0 0 1-5 5h-4.8c-1.2 1.9-2.8 3.2-4.8 3.9.9-1.2 1.4-2.5 1.5-4A5 5 0 0 1 3 11.5V9a5 5 0 0 1 5-5Z"/></g>
 </defs></svg>
 
 <header>
