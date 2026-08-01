@@ -68,9 +68,9 @@
   .lead{font-size:clamp(17px,1.7vw,20px);max-width:56ch;color:var(--slate)}
   .eyebrow{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.22em;color:var(--green-deep);margin-bottom:16px}
   /* pilares do hero: a promessa inteira em quatro pastilhas */
-  .pilares-hero{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-  .ph{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:600;color:var(--ink);box-shadow:0 1px 3px rgba(7,11,43,.05)}
-  .ph svg{width:15px;height:15px;stroke:var(--green-deep)}
+  .pilares-hero{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+  .ph{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:600;color:var(--slate)}
+  .ph svg{width:14px;height:14px;stroke:var(--green-deep)}
   .ph b{font-weight:inherit}
   .ph .sm{display:none}
   @media(max-width:480px){
@@ -80,7 +80,7 @@
     .ph.auto{font-size:10.5px}
     .ph .lg{display:none} .ph .sm{display:inline}
   }
-  .ph.auto{background:var(--ink);color:#fff;border:0;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+  .ph.auto{background:var(--ink);color:#fff;border-color:var(--ink);text-transform:uppercase;letter-spacing:.07em;font-size:11.5px;font-weight:700}
   .ph.auto svg{stroke:var(--green)}
   /* a faisca laranja: pontinho de calor que acompanha os titulos */
   .eyebrow::before{content:"";display:inline-block;width:10px;height:10px;margin-right:8px;background:var(--laranja);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
@@ -137,31 +137,46 @@
   }
   .btn svg{width:17px;height:17px;flex:none}
   .btn:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1.5px var(--ink),0 10px 20px rgba(7,11,43,.12)}
-  .btn.verde{background:var(--green);box-shadow:0 3px 10px rgba(31,219,98,.3)}
-  .btn.verde:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(31,219,98,.42)}
+  .btn.verde{
+    position:relative;overflow:hidden;color:#06371C;
+    background:linear-gradient(160deg,rgba(255,255,255,.5),rgba(255,255,255,0) 42%),var(--green);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(6,55,28,.14),0 2px 10px rgba(31,219,98,.22);
+  }
+  /* o brilho atravessa o vidro quando o mouse chega */
+  .btn.verde::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.5) 50%,transparent 62%);
+    transform:translateX(-115%);transition:transform .62s cubic-bezier(.22,.8,.28,1)}
+  .btn.verde:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 8px 22px rgba(31,219,98,.3)}
+  .btn.verde:hover::after{transform:translateX(115%)}
+  @media(prefers-reduced-motion:reduce){.btn.verde::after{display:none}}
   .btn.sm{padding:11px 20px;font-size:12px}
   .btn svg{width:18px;height:18px;flex:none}
 
   /* botao flutuante do WhatsApp: so o icone, sempre por perto, sem gritar */
+  /* o selo da marca vira o atalho do WhatsApp: gira, e o zap fica no canto */
   .zap{
     position:fixed;right:20px;bottom:20px;z-index:80;
-    width:58px;height:58px;border-radius:50%;
-    background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 6px 20px rgba(7,11,43,.22);
-    transition:transform .18s ease,box-shadow .18s ease;
+    width:72px;height:72px;display:block;
+    filter:drop-shadow(0 6px 18px rgba(7,11,43,.2));
+    transition:transform .2s ease,filter .2s ease;
   }
-  .zap:hover{transform:scale(1.06);box-shadow:0 10px 28px rgba(37,211,102,.44)}
-  .zap svg{width:30px;height:30px}
-  @media(max-width:760px){.zap{right:16px;bottom:16px;width:54px;height:54px}.zap svg{width:28px;height:28px}}
+  .zap img{position:absolute;inset:0;width:100%;height:100%}
+  .zap .zap-wa{position:absolute;right:-2px;bottom:-2px;width:28px;height:28px;border-radius:50%;
+    background:#25D366;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 7px rgba(7,11,43,.28),0 0 0 2.5px var(--paper)}
+  .zap .zap-wa svg{width:16px;height:16px;stroke:#fff}
+  .zap:hover{transform:scale(1.07);filter:drop-shadow(0 10px 24px rgba(7,11,43,.26))}
+  @media(max-width:760px){.zap{right:15px;bottom:15px;width:62px;height:62px}.zap .zap-wa{width:25px;height:25px}.zap .zap-wa svg{width:14px;height:14px}}
 
   .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
   .micro{font-size:14px;color:var(--slate-soft);margin-top:14px}
 
   /* hero */
-  .hero{padding:clamp(52px,6.5vw,84px) 0 clamp(76px,9vw,108px);position:relative;overflow:hidden}
+  .hero{padding:clamp(30px,4vw,52px) 0 clamp(70px,8vw,100px);position:relative;overflow:hidden}
   .hero::before{content:"";position:absolute;right:-20%;top:-42%;width:860px;height:860px;border-radius:50%;background:radial-gradient(circle,rgba(31,219,98,.15),rgba(31,219,98,0) 66%);pointer-events:none}
   .hero .grid{position:relative;z-index:1;display:grid;gap:64px;align-items:center}
-  @media(min-width:1000px){.hero .grid{grid-template-columns:1.04fr .96fr;gap:56px}}
+  @media(min-width:1000px){.hero .grid{grid-template-columns:1.04fr .96fr;gap:56px;align-items:start}
+    .hero .grid>div:first-child{padding-top:clamp(16px,3vw,44px)}}
   .hero h1{margin-bottom:20px}
   .hero .lead{margin-bottom:28px}
 
@@ -587,7 +602,7 @@
         <span class="ph auto"><svg viewBox="0 0 24 24"><use href="#i-energia"/></svg><b class="lg">Tudo automático</b><b class="sm">Automático</b></span>
       </div>
       <h1 class="rv" style="--d:.05s"><span class="thin">Pare de perder clientes</span> por demora no WhatsApp.</h1>
-      <p class="lead rv" style="--d:.1s">A Aly responde em segundos, marca na agenda e lança tudo no financeiro — <b>do jeito que você fala</b>. A gestão do seu negócio na palma da sua mão.</p>
+      <p class="lead rv" style="--d:.1s">A Aly responde em segundos, marca na agenda e lança tudo no financeiro, <b>do jeito que você fala</b>. A gestão do seu negócio na palma da sua mão.</p>
       <div class="cta-row rv" style="--d:.15s">
         <a class="btn verde" href="#contato" data-wa="Oi Geff, vi o site. Quero testar a Aly grátis no meu atendimento."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero testar grátis</a>
         <a class="btn" href="#planos">Ver os planos</a>
@@ -663,7 +678,7 @@
       </div>
     </div>
 
-    <p class="fonte rv" style="--d:.28s">Mais de 6 em cada 10 brasileiros já desistiram de uma compra pelo WhatsApp, e a velocidade da resposta está entre os principais motivos. <a href="https://www.opinionbox.com/" target="_blank" rel="noopener">Pesquisa Opinion Box</a>. Nos negócios que já usam a Aly, <b>4 em cada 10 mensagens chegam fora do horário comercial</b> — e são todas respondidas.</p>
+    <p class="fonte rv" style="--d:.28s">Mais de 6 em cada 10 brasileiros já desistiram de uma compra pelo WhatsApp, e a velocidade da resposta está entre os principais motivos. <a href="https://www.opinionbox.com/" target="_blank" rel="noopener">Pesquisa Opinion Box</a>. Nos negócios que já usam a Aly, <b>4 em cada 10 mensagens chegam fora do horário comercial</b>. E todas são respondidas.</p>
 
   </div>
 </section>
@@ -676,7 +691,7 @@
     </span>
     <p class="rv"><em>Seu negócio não para de crescer por falta de clientes.</em> Ele para porque você precisa resolver tudo sozinho.</p>
     <div class="cta-row rv" style="--d:.1s">
-      <a class="btn verde" href="#contato" data-wa="Oi Geff, vi o site. Hoje sou eu que faço tudo aqui no meu negócio — quero testar a Aly grátis."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero testar grátis</a>
+      <a class="btn verde" href="#contato" data-wa="Oi Geff, vi o site. Hoje sou eu que faço tudo aqui no meu negócio. Quero testar a Aly grátis."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero testar grátis</a>
       <a class="btn" href="#planos">Ver os planos</a>
     </div>
   </div>
@@ -803,11 +818,11 @@
     <div>
       <span class="tag-fin rv">Financeiro</span>
       <h2 class="rv" style="--d:.05s"><span class="thin">Você sabe quanto ganha?</span><br>E quanto gasta?</h2>
-      <p class="lead rv" style="--d:.09s;margin-top:16px">Tudo que entra e sai fica registrado sozinho: o atendimento vira lançamento na hora. Com a Aly, a resposta é um número — não um chute.</p>
+      <p class="lead rv" style="--d:.09s;margin-top:16px">Cada atendimento que a Aly marca já entra no caixa. As contas que você paga também. No fim do dia o número tá lá, sem você somar nada.</p>
       <ul class="fin-lista rv" style="--d:.13s">
-        <li>Atendimento marcado já entra no caixa</li>
-        <li>Contas a pagar e a receber com aviso de vencimento</li>
-        <li>Caixa do dia fechado sozinho, todo dia</li>
+        <li>Você vê quanto entrou hoje, na hora</li>
+        <li>Quem te deve e quem você deve, com data</li>
+        <li>No fim do mês, o total já tá pronto</li>
       </ul>
     </div>
     <div class="fin-card rv" style="--d:.15s">
@@ -815,7 +830,7 @@
       <div class="fin-linha ent"><span>Entrou</span><strong>+ R$ 480</strong></div>
       <div class="fin-linha sai"><span>Saiu</span><strong>− R$ 120</strong></div>
       <div class="fin-total"><span>Sobrou</span><strong>R$ 360</strong></div>
-      <p class="fin-nota">Exemplo ilustrativo — no app, são os seus números.</p>
+      <p class="fin-nota">Exemplo. No app são os seus números.</p>
     </div>
   </div>
 </section>
@@ -844,11 +859,11 @@
       <div class="pilar rv" style="--d:.21s">
         <div class="ico"><svg viewBox="0 0 24 24"><use href="#i-crescer"/></svg></div>
         <h3>Espaço pra crescer</h3>
-        <p>Contratar, abrir horário novo, criar serviço — cabe de novo na sua agenda.</p>
+        <p>Contratar, abrir horário novo, criar serviço. Isso cabe de novo na sua agenda.</p>
       </div>
     </div>
     <div class="cta-row rv" style="--d:.25s;margin-top:38px">
-      <a class="btn verde" href="#contato" data-wa="Oi Geff, vi o site. Quero descansar e deixar a Aly atender — bora testar grátis?"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero testar grátis</a>
+      <a class="btn verde" href="#contato" data-wa="Oi Geff, vi o site. Quero descansar e deixar a Aly atender. Bora testar grátis?"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Quero testar grátis</a>
     </div>
     <p class="micro rv" style="--d:.28s;margin-top:12px">O teste é grátis. Tá esperando o quê?</p>
   </div>
@@ -955,7 +970,7 @@
         <div class="preco" data-preco="multi">Sob consulta<small>Definido na conversa, pelo seu atendimento</small></div>
         <p class="mais">Tudo do Completo, e mais:</p>
         <ul><li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Agendamentos e conversas sem limite</li><li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Unidades e agendas sem limite</li><li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Integrações sob medida</li><li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Implantação e acompanhamento dedicados</li><li><svg viewBox="0 0 24 24"><use href="#i-ok"/></svg>Um painel por unidade e a visão geral no seu</li></ul>
-        <a class="btn" href="#contato" data-wa="Oi Geff, vi o site. Minha operação é maior — queria falar sobre o Multi.">Falar sobre o Multi</a>
+        <a class="btn" href="#contato" data-wa="Oi Geff, vi o site. Minha operação é maior. Queria falar sobre o Multi.">Falar sobre o Multi</a>
         <p class="fina">Conversa antes de qualquer proposta</p>
       </div>
     </div>
@@ -1015,7 +1030,11 @@
   </div>
 </footer>
 
-<a class="zap" href="#" data-wa aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg></a>
+<a class="zap" href="#" data-wa aria-label="Falar no WhatsApp">
+  <img class="selo-anel" src="assets/selo-anel.png" alt="">
+  <img class="selo-miolo" src="assets/selo-miolo.png" alt="">
+  <span class="zap-wa"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg></span>
+</a>
 
 <script>
 /* ─────────────────────────────────────────────────────────────
